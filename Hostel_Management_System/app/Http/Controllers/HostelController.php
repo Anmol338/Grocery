@@ -61,6 +61,19 @@ class HostelController extends Controller
         // Insert data into the database
         Hostel::create($data);
 
-        return redirect()->route('hostel');
+        return redirect()->route('hostel')->with('status', 'Hostel created successfully!!');
+    }
+
+    /**
+     * Remove the specified hostel from storage.
+     *
+     * @param  \App\Models\Hostel  $hostel
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        // $hostel = Hostel::findorfail($id);
+        // $hostel->delete();
+        // return redirect()->route('hostel')->with('status', 'Hostel deleted successfully!!');
     }
 }

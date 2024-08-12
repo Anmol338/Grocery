@@ -3,6 +3,24 @@
 @section('content')
     <h1 class="text-3xl text-black">Hostel</h1>
 
+    @if (session('status'))
+        <div id="alert-box" class="mx-5 bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md"
+            role="alert">
+            <div class="flex justify-between items-center">
+                <p class="font-bold">{{ session('status') }}</p>
+                <button onclick="closeAlert()" class="text-teal-900 font-bold px-2">X</button>
+            </div>
+        </div>
+
+        <script>
+            function closeAlert() {
+                document.getElementById('alert-box').style.display = 'none';
+            }
+
+            setTimeout(closeAlert, 5000); // Automatically close the alert after 5 seconds
+        </script>
+    @endif
+
     <div class="w-full my-5 text-end">
         <a href="{{ route('hostel.create') }}" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
             aria-current="page"> <i class="fas fa-solid fa-plus mr-2"></i> Add
@@ -38,7 +56,7 @@
                             <td class="text-left py-3 px-4">
                                 <div class="mx-5 my-1 flex flex-wrap items-center justify-center gap-2">
 
-                                    <a href="#"
+                                    <a href="{{ url('hostel/'.$hostel->id.'/delete') }}"
                                         class="flex items-center justify-center h-10 w-20 rounded-md bg-blue-700 text-center font-medium text-white hover:bg-opacity-90">
                                         <i class="fas fa-solid fa-eye mr-2"></i>
                                         View
